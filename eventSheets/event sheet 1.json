@@ -1,0 +1,550 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "Use the down arrow to allow the player to deliberately drop down through a jump-thru platform."
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 305389046261418,
+					"parameters": {
+						"key": 40
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "fall-through",
+					"objectClass": "Player",
+					"sid": 892367029867673,
+					"behaviorType": "Platform"
+				}
+			],
+			"sid": 128459781631962
+		},
+		{
+			"eventType": "comment",
+			"text": "Allow WASD as alternate controls to arrow keys."
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 409724842862331,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 920742090584576,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "jump"
+					}
+				}
+			],
+			"sid": 645292426100724
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 708741849450046,
+					"parameters": {
+						"key": 81
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 775074611847897,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "left"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 549170062363570,
+					"parameters": {
+						"animation": "\"marchegauche\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 242167283932481
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 606056445084855,
+					"parameters": {
+						"key": 83
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "fall-through",
+					"objectClass": "Player",
+					"sid": 704843732518047,
+					"behaviorType": "Platform"
+				}
+			],
+			"sid": 539757104898646
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "key-is-down",
+					"objectClass": "Keyboard",
+					"sid": 248839217420683,
+					"parameters": {
+						"key": 68
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "Player",
+					"sid": 700473221744042,
+					"behaviorType": "Platform",
+					"parameters": {
+						"control": "right"
+					}
+				},
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 526157803848713,
+					"parameters": {
+						"animation": "\"marchedroite\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 591315574743711
+		},
+		{
+			"eventType": "comment",
+			"text": "Mirror the player's image so they appear facing the right way when moving left or right."
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 528722391729597,
+					"parameters": {
+						"key": 37
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 738010636502568,
+					"parameters": {
+						"key": 81
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 132393308998210,
+					"parameters": {
+						"state": "mirrored"
+					}
+				}
+			],
+			"sid": 636041846004128,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 711168855441086,
+					"parameters": {
+						"key": 39
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 981994648819837,
+					"parameters": {
+						"key": 68
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 834972848466442,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				}
+			],
+			"sid": 141520300585655,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "comment",
+			"text": "If the player falls off the bottom of the layout, restart the level."
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-y",
+					"objectClass": "Player",
+					"sid": 564820914778219,
+					"parameters": {
+						"comparison": 4,
+						"y-co-ordinate": "LayoutHeight"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 541417716131689
+				}
+			],
+			"sid": 301769199928821
+		},
+		{
+			"eventType": "variable",
+			"name": "scrollDirection",
+			"type": "string",
+			"initialValue": "vertical",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 938898162892022
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 167602862161389
+				}
+			],
+			"actions": [
+				{
+					"id": "scroll-to-object",
+					"objectClass": "System",
+					"sid": 403355529054605,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"sid": 727027919755626
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Souris",
+					"sid": 652550544001857,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 421924024583039,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 776675940938267,
+							"parameters": {
+								"variable": "scrollDirection",
+								"comparison": 0,
+								"value": "\"vertical\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Kill2_couleur",
+							"sid": 846085270785056,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 135980217283781,
+							"parameters": {
+								"variable": "scrollDirection",
+								"value": "\"horisontal\""
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Kill_couleur",
+							"sid": 731498173485204,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 406674974901019
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 569864066765306
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Kill_couleur",
+							"sid": 654480641264085,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 630093982875472,
+							"parameters": {
+								"variable": "scrollDirection",
+								"value": "\"vertical\""
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Kill2_couleur",
+							"sid": 795743569193186,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 505444127849557
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 267721136092501
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "d",
+					"sid": 468225206329554,
+					"parameters": {
+						"text": "zeropad(int(time/60% 60), 2) & \":\" & zeropad(int(time%60), 2)"
+					}
+				}
+			],
+			"sid": 166677692563734,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 928959209115411,
+							"parameters": {
+								"variable": "scrollDirection",
+								"comparison": 0,
+								"value": "\"vertical\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "scroll-to-y",
+							"objectClass": "System",
+							"sid": 132452239444042,
+							"parameters": {
+								"y": "scrolly + Player.Platform.VectorY*dt"
+							}
+						}
+					],
+					"sid": 481337383542527
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 349322998197668
+						}
+					],
+					"actions": [
+						{
+							"id": "scroll-to-x",
+							"objectClass": "System",
+							"sid": 841466962168905,
+							"parameters": {
+								"x": "scrollx + Player.Platform.VectorX*dt"
+							}
+						}
+					],
+					"sid": 526973337725913
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Player",
+					"sid": 749973167305689,
+					"parameters": {
+						"object": "kill"
+					}
+				},
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Player",
+					"sid": 998349340844984,
+					"parameters": {
+						"object": "kill2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Player",
+					"sid": 159683892544202
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Texte",
+					"sid": 658352783386330,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 489337598285795,
+					"parameters": {
+						"seconds": "1.0"
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 116724648081285
+				}
+			],
+			"sid": 583439394457047,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Player",
+					"sid": 973664639857340,
+					"parameters": {
+						"object": "Sprite2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Sprite2",
+					"sid": 819714319355636,
+					"parameters": {
+						"object": "Particules2",
+						"layer": "1",
+						"image-point": "0"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Texte",
+					"sid": 156767214281480,
+					"parameters": {
+						"text": "\"Vous avez gagné en : \" & d.Text"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Texte",
+					"sid": 318994098499657,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Player",
+					"sid": 571414696550180
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Sprite2",
+					"sid": 233274177124866
+				}
+			],
+			"sid": 715400552365250
+		}
+	],
+	"sid": 576052392024176
+}
